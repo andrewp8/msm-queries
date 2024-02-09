@@ -1,13 +1,33 @@
-<h1>List of directors</h1>
+
+
+    <h1>
+  List of all directors
+</h1>
+
+<hr>
 
 <table border="1">
   <tr>
-    <th>ID</th>
-    <th>Image</th>
-    <th>Name</th>
-    <th>Dob</th>
-    <th>ID</th>
+    <th>
+      ID
+    </th>
+
+    <th>
+      Image
+    </th>
+
+    <th>
+      Name
+    </th>
+
+    <th>
+      Dob
+    </th>
+
+    <th>
+    </th>
   </tr>
+
   <% Director.all.each do |a_director| %>
     <tr>
       <td><%= a_director.id %></td>
