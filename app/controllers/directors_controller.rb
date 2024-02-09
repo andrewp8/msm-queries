@@ -29,6 +29,7 @@ class DirectorsController < ApplicationController
 
   def eldest
     @eldest_director = Director.where.not({:dob => nil}).order({:dob =>:asc }).first
+    @eldest_director.dob.strftime("%B %d, %Y") 
     render({:template => "directors_templates/eldest"})
   end
 
@@ -36,5 +37,11 @@ class DirectorsController < ApplicationController
     age_limit_date = 55.years.ago
     @directors_younger_than_55 = Director.where("strftime('%Y', dob) > ?", age_limit_date)
     render({:template => "directors_templates/younger_than_55"})
+  end
+
+  def movies_directed_by
+    director_name = params.fetch("director_name")
+    @searched_directors = Director.where("name LIKE ?", "%#{director_name}%")
+    render({:template => "directors_templates/movies_directed_by"})
   end
 end

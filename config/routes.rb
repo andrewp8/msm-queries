@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   
   get("/directors/younger_than_55", {:controller => "directors", :action => "younger_than_55"})
 
+  get("/directors/movies_directed_by", {:controller => "directors", :action => "movies_directed_by"})
+
   get("/directors/:the_id", {:controller => "directors", :action => "show"})
 
   get("/movies", {:controller => "movies", :action => "index"})

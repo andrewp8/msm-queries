@@ -1,0 +1,71 @@
+<a href="/directors">
+      Go back to All directors
+    </a>
+
+<% @searched_directors.each do |a_director| %>
+  <table border="1">
+  <tr>
+    <th>
+      ID
+    </th>
+
+    <th>
+      Image
+    </th>
+
+    <th>
+      Name
+    </th>
+
+    <th>
+      Movies
+    </th>
+  </tr>
+    <tr>
+      <td><%= a_director.id %></td>
+      <td>
+        <img src="<%= a_director.image %>" width="100"/>
+      </td>
+      <td><%= a_director.name %></td>
+      <% movies_directed_by_the_director = Movie.where(:director_id => a_director.id) %>
+      <td>
+        <table>
+          <tr>
+            <th></th>
+            <th></th>
+          <tr>
+          <tr>
+            <td>
+              <table>
+                <tr>
+                  <th>Number of movies directed by <%= a_director.name %></th>
+                </tr>
+                <tr>
+                  <td>
+                    <%= movies_directed_by_the_director.count %>
+                  </td>
+                </tr>
+              </table>
+            </td>
+            <td>
+              <table border="1">
+                <tr>
+                  <th>Name</th>
+                  <th>Year</th>
+                </tr>
+                <tr>
+                  <%  movies_directed_by_the_director.each do |a_movie|  %>
+                    <td><%= a_movie.title %></td>
+                    <td><%= a_movie.year %></td>
+                  <% end  %>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+      
+  </tr>
+  
+  </table>
+<% end %>
