@@ -1,10 +1,4 @@
-<h1>List of movies</h1>
-    <form action="/movies/search/">
-        <label for="searched_movie">Search:</label><br>
-        <input type="text" id="searched_movie" name="searched_movie"><br><br>
-        
-        <input type="submit" value="Submit">
-    </form>
+<h1>Search results</h1>
 <hr>
 <table border="1">
   <tr>
@@ -12,10 +6,11 @@
     <th>Image</th>
     <th>Title</th>
     <th>Year</th>
+    <th>Years since released</th>
     <th>Director</th>
     <th></th>
   </tr>
-  <% Movie.all.each do |a_movie| %>
+  <% @search_results.each do |a_movie| %>
     <tr>
       <td><%= a_movie.id %></td>
       <td>
@@ -23,7 +18,8 @@
       </td>
       <td><%= a_movie.title %></td>
       <td><%= a_movie.year %></td>
-      <td>
+      <td style="text-align: center;"><%= Time.now.year - a_movie.year%></td>
+      <td >
         <% matching_records = Director.where({:id => a_movie.director_id})%>  
         <% the_director = matching_records.first %>
         <%= the_director.name %>
