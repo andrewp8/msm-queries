@@ -31,4 +31,10 @@ class DirectorsController < ApplicationController
     @eldest_director = Director.where.not({:dob => nil}).order({:dob =>:asc }).first
     render({:template => "directors_templates/eldest"})
   end
+
+  def younger_than_55
+    age_limit_date = 55.years.ago
+    @directors_younger_than_55 = Director.where("strftime('%Y', dob) > ?", age_limit_date)
+    render({:template => "directors_templates/younger_than_55"})
+  end
 end

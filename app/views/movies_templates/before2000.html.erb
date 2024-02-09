@@ -1,1 +1,38 @@
-<%= @before2000_movies %>
+
+<h1>List of movies before 2000</h1>
+    <form action="/movies/search/">
+        <label for="searched_movie">Search:</label><br>
+        <input type="text" id="searched_movie" name="searched_movie"><br><br>
+        
+        <input type="submit" value="Submit">
+    </form>
+<hr>
+<table border="1">
+  <tr>
+    <th>ID</th>
+    <th>Image</th>
+    <th>Title</th>
+    <th>Year</th>
+    <th>Director</th>
+    <th></th>
+  </tr>
+  <% @before2000_movies.each do |a_movie| %>
+    <tr>
+      <td><%= a_movie.id %></td>
+      <td>
+        <img src="<%= a_movie.image %>" width="100"/>
+      </td>
+      <td><%= a_movie.title %></td>
+      <td><%= a_movie.year %></td>
+      <td>
+        <% matching_records = Director.where({:id => a_movie.director_id})%>  
+        <% the_director = matching_records.first %>
+        <%= the_director.name %>
+      </td>
+      <td>
+        <a href="/movies/<%= a_movie.id %>">Show details</a>
+      </td>
+  </tr>
+  <% end %>
+  
+</table>

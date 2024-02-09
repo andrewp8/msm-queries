@@ -1,16 +1,22 @@
 <h1>Search results</h1>
 <hr>
-<table border="1">
-  <tr>
-    <th>ID</th>
-    <th>Image</th>
-    <th>Title</th>
-    <th>Year</th>
-    <th>Years since released</th>
-    <th>Director</th>
-    <th></th>
-  </tr>
-  <% @search_results.each do |a_movie| %>
+<% if @search_results.first == nil  %>
+  <h3>There is no movie with that name. Try again</h3>
+  <a href="/movies">
+  Go back to All Movies
+</a>
+<% else  %>
+  <table border="1">
+    <tr>
+      <th>ID</th>
+      <th>Image</th>
+      <th>Title</th>
+      <th>Year</th>
+      <th>Years since released</th>
+      <th>Director</th>
+      <th></th>
+    </tr>
+    <% @search_results.each do |a_movie| %>
     <tr>
       <td><%= a_movie.id %></td>
       <td>
@@ -27,7 +33,9 @@
       <td>
         <a href="/movies/<%= a_movie.id %>">Show details</a>
       </td>
-  </tr>
+    </tr>
   <% end %>
   
-</table>
+  </table>
+<% end %>
+  

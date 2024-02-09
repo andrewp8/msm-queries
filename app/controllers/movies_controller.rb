@@ -20,7 +20,7 @@ class MoviesController < ApplicationController
   end
 
   def before2000
-    @before2000_movies = Movie.where("extract(year from year) < ?", 2000)
+    @before2000_movies = Movie.where("year < ?", 2000)
     render({:template => "movies_templates/before2000"})
   end
 end
